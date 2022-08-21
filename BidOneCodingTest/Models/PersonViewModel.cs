@@ -22,7 +22,7 @@ namespace BidOneCodingTest.Models
         [RegularExpression("[A-Za-z ]*", ErrorMessage = "Only Characters allowed")]
         public string LastName { get; set; }
 
-        public string SubmitMessage { get; set; }
+      
 
         public PersonViewModel()
         {
