@@ -8,6 +8,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using System.Text.Json;
+using System.IO;
+
 namespace BidOneCodingTest.Controllers
 {
     public class HomeController : Controller
@@ -32,7 +34,17 @@ namespace BidOneCodingTest.Controllers
             if (ModelState.IsValid)
             {
                 var jsondata = JsonSerializer.Serialize(person);
-                    System.IO.File.AppendAllText("person.json", jsondata + Environment.NewLine);
+
+
+                string path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+
+                using (StreamWriter outputFile = new StreamWriter(Path.Combine(path, "person.json")))
+                {
+                    outputFile.WriteLine(jsondata + Environment.NewLine);
+                }
+
+
+                //System.IO.File.AppendAllText("person.json", jsondata + Environment.NewLine);
                     ViewBag.viewBagMsg = "Person details saved successfully.";
                     ModelState.Clear();             
             }          
