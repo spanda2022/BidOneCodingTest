@@ -1,0 +1,42 @@
+﻿@model BidOneCodingTest.Models.PersonViewModel;
+@{
+    ViewData["Title"] = "Home Page";
+    var submitMsg= (ViewBag.viewBagMsg is null ? "" : ViewBag.viewBagMsg);
+
+}
+
+<div class="text-center">
+    <h1 class="display-4">Person Details</h1>
+</div>
+<div class="table-responsive">
+    @using (Html.BeginForm("SubmitForm", "Home", FormMethod.Post))
+    {
+    <table cellpadding="1" cellspacing="1">
+
+        <tr>
+            <td>First Name </td>
+            <td>
+                @Html.TextBoxFor(m => m.FirstName, new { title = "Only characters are allowed" })
+                @Html.ValidationMessageFor(m => m.FirstName)
+            </td>
+        </tr>
+        <tr>
+            <td>Last Name </td>
+            <td>
+                @Html.TextBoxFor(m => m.LastName, new { title = "Only characters are allowed" })
+                @Html.ValidationMessageFor(m => m.LastName)
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><input type="submit" value="Save" /></td>
+           
+        </tr>
+        <tr>
+            <td></td>
+            <td>@ViewBag.viewBagMsg</td>
+        </tr>
+    </table>
+    }
+    </div>
+     
